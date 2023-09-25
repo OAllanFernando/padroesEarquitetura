@@ -1,45 +1,48 @@
 import React from 'react';
-import { View, Image, Text } from 'react-native'; 
+import { View, Image, Text, StyleSheet } from 'react-native';
+import Icon from 'react-native-paper/lib/typescript/components/Icon';
 import GeradorDeUrl from './utils/GeradorDeUrl';
-// import './SeuComponente.css'; // Importe seu arquivo CSS se necessário
+import { IconButton } from 'react-native-paper';
 
 const SeuComponente: React.FC = () => {
   const gerador = GeradorDeUrl();
   const imageUrl = gerador.gerarUrlDeImagem();
+
   return (
-    <View>
-      <View style={styles.imagemContainer}>
+    <View style={styles.container}>
+      <View style={styles.imageContainer}>
         <Image source={{ uri: imageUrl }} style={styles.imagem} />
       </View>
-      <View style={{styles.iconesContainer}}>
-        <Text style={styles.icone}>Ícone 1</Text>
-        <Text style={styles.icone}>Ícone 2</Text>
+      <View style={styles.textContainer}>
+        <IconButton
+          icon="check" // Nome do ícone (substitua por um ícone real)
+          size={30}     // Tamanho do ícone
+           // Cor do ícone
+          onPress={() => console.log('Ícone pressionado')} // Ação ao pressionar o ícone
+        />
       </View>
     </View>
   );
 }
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: 'center', // Alinhar os itens na parte inferior
   },
-  imagemContainer: {
-    marginBottom: 20, // Espaço entre a imagem e os ícones
+  imageContainer: {
+    alignItems: 'center', // Centralizar a imagem horizontalmente
   },
   imagem: {
     width: 600, // Ajuste a largura conforme necessário
     height: 600, // Ajuste a altura conforme necessário
   },
-  iconesContainer: {
+  textContainer: {
+    marginBottom: 20,
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
   },
-  icone: {
-    fontSize: 24,
-  },
-};
+});
 
 export default SeuComponente;
